@@ -118,26 +118,27 @@ app.get('/usersuggest/:uname', async function (req, res) {
 app.post('/usersuggest/:uname', async function (req, res) {
     let username = req.params.uname
     let area = req.body.area
-    // console.log(area);
     let thesuggestion = req.body.suggest
-
+    let user = await SpazaSuggest.user(username)
     let thearea = await SpazaSuggest.findAreaByName(area)
 
-    console.log(username);
-    console.log(thearea.id);
-    console.log(thesuggestion);
+    let userId = user.id;
+    let areaId = thearea.id;
+    // console.log(thesuggestion + 'dsdsdsdsd');
 
-    if (!area && !thesuggestion) {
-        req.flash('sukuna', 'Please select a area and give a suggestion before submitting')
-    }
-    else{
-        await SpazaSuggest.suggestProduct(username.id, thearea.id, thesuggestion) 
+    if (userId&& areaId&& thesuggestion) {
+        await SpazaSuggest.suggestProduct(areaId, userId, thesuggestion)
         req.flash('sukuna', 'Your suggestion has been added')
+    }
+    else {
+        req.flash('sukuna', 'Please select a area and give a suggestion before submitting')
     }
 
     res.redirect("back")
 
 })
+
+// app.post(/)
 
 const PORT = process.env.PORT || 3003;
 

@@ -27,7 +27,12 @@ module.exports = function SpazaSuggest(db) {
     }
 
     async function getUser(user)  {
-        const client = await db.oneOrNone(`select userna from spaza_client where username = $1`, [user]);
+        const client = await db.oneOrNone(`select username from spaza_client where username = $1`, [user]);
+        return client
+    }
+
+    async function user(user)  {
+        const client = await db.oneOrNone(`select * from spaza_client where username = $1`, [user]);
         return client
     }
 
@@ -43,7 +48,7 @@ module.exports = function SpazaSuggest(db) {
     }
 
     async function suggestProduct(areaId, clientId, suggestion) {
-        
+
         await db.none(`insert into suggestion(area_id, client_id, product_name) values ($1, $2, $3)`, 
             [areaId, clientId, suggestion])
     }
@@ -123,6 +128,7 @@ module.exports = function SpazaSuggest(db) {
         likeSuggestion,
         clientLogin,
         duplicate,
-        getUser
+        getUser,
+        user
     }
 }
