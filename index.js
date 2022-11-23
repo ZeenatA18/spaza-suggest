@@ -45,7 +45,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(flash());
 
-app.get('/',  async function home(req, res) {
+app.get('/', async function home(req, res) {
 
     res.render('index', {
         codex: req.session.codex
@@ -59,7 +59,7 @@ app.post('/register', async function (req, res) {
 
     const ShortUniqueId = require("short-unique-id");
     const uid = new ShortUniqueId({ length: 5 });
-    
+
 
     if (results.length !== 0) {
         req.flash('sukuna', `${user}, Username already exists`);
@@ -78,30 +78,65 @@ app.post('/register', async function (req, res) {
 
 })
 
-app.post('/login',  async function (req, res) {
+app.post('/login', async function (req, res) {
     let user = req.body.uname.charAt(0).toUpperCase() + req.body.uname.slice(1).toLowerCase();
     let code = req.body.psw
 
     let alphabet = /^[a-z A-Z]+$/
-    var username = await SpazaSuggest.getUser(user)
+    // var username = await SpazaSuggest.getUser(user)
     var codex = await SpazaSuggest.clientLogin(code)
+
+    console.log(codex);
 
     if (alphabet.test(user) == false) {
         req.flash('sukuna', 'Please use Alphabets only')
         res.redirect("/")
-    } else if (!username) {
-        req.flash('sukuna', 'Please register first')
-    } else if (username, codex) {
+    }
+    // else if (!codex.username) {
+    //     req.flash('sukuna', 'Please register first')
+    // }
+    else if (codex) {
         req.session.codex = codex
-        res.redirect(`usersuggest/${user}`)
+        res.redirect(`/usersuggest/${user}`)
     } else {
         req.flash('sukuna', 'Please check if you typed the correct Username or Code')
         res.redirect('/')
     }
 })
 
-app.get('/usersuggest/:uname',  async function (req, res) {
-    
+app.get('/usersuggest/:uname', async function (req, res) {
+    let uname = req.params.uname
+    let ereaz = await SpazaSuggest.areas()
+
+    res.render('spaza', {
+        uname,
+        ereaz
+    })
+})
+
+
+app.post('/usersuggest/:uname', async function (req, res) {
+    let username = req.params.uname
+    let area = req.body.area
+    // console.log(area);
+    let thesuggestion = req.body.suggest
+
+    let thearea = await SpazaSuggest.findAreaByName(area)
+
+    console.log(username);
+    console.log(thearea.id);
+    console.log(thesuggestion);
+
+    if (!area && !thesuggestion) {
+        req.flash('sukuna', 'Please select a area and give a suggestion before submitting')
+    }
+    else{
+        await SpazaSuggest.suggestProduct(username.id, thearea.id, thesuggestion) 
+        req.flash('sukuna', 'Your suggestion has been added')
+    }
+
+    res.redirect("back")
+
 })
 
 const PORT = process.env.PORT || 3003;

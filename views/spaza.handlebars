@@ -1,4 +1,29 @@
 <body>
-    
-<form action="/usersuggest/{{uname}}" method="post" id="myform"></form>
+    <form action="/usersuggest/{{uname}}" method="post" id="myform">
+
+
+        <div class="sukuna">
+            {{#if messages.sukuna}}
+            <div class="codeMsg">{{messages.sukuna}}</div>
+            {{/if}}
+        </div>
+
+        <h1> Leave your Suggestion here </h1>
+
+        <label for="">Choose a area:</label>
+
+        <select name="area" id="">
+             <option name="area" value="">Select a area</option>
+            {{#each ereaz}}
+            <option name="area" value="{{area_name}}">{{area_name}}</option>
+            {{/each}}
+        </select>
+        <br><br>
+
+        <label for="fname">Suggestion:</label>
+        <input type="text" id="suggest" name="suggest" placeholder="Enter suggestion here"><br><br>
+
+        <button type="submit">Submit</button>
+
+    </form>
 </body>
