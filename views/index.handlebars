@@ -1,13 +1,26 @@
 <body>
-    
-<div class="loginbtn">
+
+<nav class="navbar">
+            <ul>
+                <li  onclick="document.getElementById('idadmin').style.display='block' ">Admin Login</li>
+               
+            </ul>
+        </nav>
+
+<div class="sukuna">
+    {{#if messages.sukuna}}
+    <div class="codeMsg">{{messages.sukuna}}</div>
+    {{/if}}
+</div>
+
+    <div class="loginbtn">
         <button onclick="document.getElementById('id_register').style.display='block' ">Register</button> <br>
         <button onclick="document.getElementById('iduser').style.display='block' ">Login</button> <br>
         {{!-- <button onclick="document.getElementById('idadmin').style.display='block' ">Admin Login</button> --}}
 
     </div>
 
-     <div id="iduser" class="user">
+    <div id="iduser" class="user">
 
         <form class="modal-content animate" action="/login" method="post">
 
@@ -21,7 +34,7 @@
                 <div class="container">
 
                     <label for="uname"><b>Username</b></label>
-                    {{!-- {{codex.username}} --}}
+                    {{codex.username}}
                     <input type="text" placeholder="Enter Username" name="uname" autocomplete="off" required>
 
                     <div>
@@ -38,4 +51,79 @@
         </form>
 
     </div>
+
+    <form action="/register" method="post">
+
+        <div class="register container animate" id="id_register">
+
+            <h1 style="text-align: center;">Register</h1>
+
+            <div class="userImg">
+                {{!-- <img src="css/coffee cup.png" alt=""> --}}
+            </div>
+
+            <label for="uname"><b>Firstname</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" autocomplete="off" required>
+
+            <button type="submit" style="margin-left: 25%;"> Register </button>
+
+        </div>
+
+    </form>
+
+    <div id="idadmin" class="coffee">
+
+        <form class="modal-content animate" action="/login_admin" method="post">
+
+            <h1 style="text-align: center;">LOGIN</h1>
+            <div class="userImg">
+            </div>
+
+            <div class="maincontainer">
+
+                <div class="container">
+
+                    <label for="uname"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="uname" autocomplete="off" required>
+
+                    <div>
+                        <label for="psw"><b>Code</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" autocomplete="off" required>
+                    </div>
+
+                    <button type="submit" style="margin-left: 25%;"> Login </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    </form>
+
+    <script>
+        var register = document.getElementById('id_register');
+        var modal = document.getElementById('iduser');
+        var admin = document.getElementById('idadmin');
+
+        window.onclick = function (event) {
+            if (event.target == register) {
+                register.style.display = "none";
+            } else if (event.target == modal) {
+                modal.style.display = "none";
+            } else if (event.target == admin) {
+                admin.style.display = "none";
+            }
+        }
+
+    //    setTimeout(function () {
+   //         document.querySelector(".codeMsg").innerHTML = ""
+//        }, 5000);
+
+    </script>
+
 </body>
+
+{{!-- </html> --}}

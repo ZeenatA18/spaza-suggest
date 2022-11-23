@@ -1,0 +1,140 @@
+body{
+  background-color: #888;
+}
+
+.navbar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #264653;
+  position: sticky;
+  top: 0;
+}
+
+.navbar ul{
+  display: flex;
+  list-style: none;
+  margin: 20px 0px;
+}
+
+.navbar ul li{
+  font-family: century;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-left: 49em;
+  color: white;
+}
+
+.navbar ul li {
+  text-decoration: none;
+  /* color: rgb(15, 116, 96); */
+  padding: 8px 10px;
+  transition: all .5s ease;
+}
+
+.navbar ul li:hover{
+  background-color: #40b78c;
+  color: black;
+  box-shadow: 0 0 20px white;
+}
+
+.loginbtn {
+  text-align: center;
+  margin-top: 15%;
+}
+
+input[type=text],
+input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #40b78c;
+  color: white;
+  padding: 14px 20px;
+  margin: 10px 0;
+  border: none;
+  cursor: pointer;
+  width: 40%;
+  border-radius: 6px;
+}
+
+.container {
+  padding: 16px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* The Modal (background) */
+.user {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 10px;
+}
+
+.register {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  overflow: auto;
+  padding-top: 10px;
+  background-color: #fefefe;
+  border-radius: 50px 50px;
+  margin: 10% 25% 60% 25%;
+  /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 50%;
+  /* Could be more or less, depending on screen size */
+  /* height: 50%; */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  border-radius: 50px 50px;
+  margin: 3% auto 3% auto;
+  /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 50%;
+  /* Could be more or less, depending on screen size */
+}
+
+.codeMsg {
+  text-align: center;
+  color: green;
+  font-size: larger; 
+  font-weight: bolder;
+}
+
+.sukuna{
+  background-color: lightgreen;
+  width: 40%;
+  /* padding: 10px; */
+  margin-left: 30%;
+}

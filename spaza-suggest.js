@@ -5,6 +5,11 @@ module.exports = function SpazaSuggest(db) {
 
     const uid = new ShortUniqueId({ length: 5 });
 
+    async function duplicate(user) {
+        let db_results = await db.any('SELECT username FROM spaza_client WHERE username = $1', [user]);
+        return db_results;
+    }
+
     //// returns client code
     async function registerClient(username){
         // get the code
@@ -18,6 +23,11 @@ module.exports = function SpazaSuggest(db) {
     // returns the user if it's a valid code
     async function clientLogin(code)  {
         const client = await db.oneOrNone(`select * from spaza_client where code = $1`, [code]);
+        return client
+    }
+
+    async function getUser(user)  {
+        const client = await db.oneOrNone(`select * from spaza_client where username = $1`, [user]);
         return client
     }
 
@@ -110,6 +120,8 @@ module.exports = function SpazaSuggest(db) {
         suggestions,
         suggestionsForArea,
         likeSuggestion,
-        clientLogin
+        clientLogin,
+        duplicate,
+        getUser
     }
 }
