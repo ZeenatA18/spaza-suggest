@@ -1,0 +1,41 @@
+<body>
+    
+<div class="loginbtn">
+        <button onclick="document.getElementById('id_register').style.display='block' ">Register</button> <br>
+        <button onclick="document.getElementById('iduser').style.display='block' ">Login</button> <br>
+        {{!-- <button onclick="document.getElementById('idadmin').style.display='block' ">Admin Login</button> --}}
+
+    </div>
+
+     <div id="iduser" class="user">
+
+        <form class="modal-content animate" action="/login" method="post">
+
+            <h1 style="text-align: center;">LOGIN</h1>
+            <div class="userImg">
+                {{!-- <img src="css/coffee cup.png" alt=""> --}}
+            </div>
+
+            <div class="maincontainer">
+
+                <div class="container">
+
+                    <label for="uname"><b>Username</b></label>
+                    {{!-- {{codex.username}} --}}
+                    <input type="text" placeholder="Enter Username" name="uname" autocomplete="off" required>
+
+                    <div>
+                        <label for="psw"><b>Code</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" autocomplete="off" required>
+                    </div>
+
+                    <button type="submit" style="margin-left: 25%;"> Login </button> 
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</body>

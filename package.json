@@ -1,9 +1,8 @@
 {
-  "name": "",
+  "name": "spaza-suggest",
   "version": "1.0.0",
-  "description": "",
+  "description": "Create an app that help Spaza Shops to crowdsource which products to sell in their shops.",
   "main": "index.js",
-  "type": "module",
   "license": "AGPL-version-3.0",
   "private": false,
   "engines": {
@@ -17,19 +16,23 @@
   },
   "bugs": "",
   "keywords": [],
-  "author": {
-    "name": "",
-    "email": "",
-    "url": ""
-  },
+  "author": "",
   "contributors": [],
   "scripts": {
     "dev": "",
     "test": "mocha"
   },
   "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "express-flash": "0.0.2",
+    "express-session": "^1.17.3",
     "mocha": "^10.1.0",
-    "pg-promise": "^10.15.0",
+    "pg-promise": "^10.15.2",
     "short-unique-id": "^4.4.4"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {}
 }
